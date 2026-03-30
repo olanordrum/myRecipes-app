@@ -7,6 +7,8 @@ import { colors } from "../theme/colors"
 export default function CreateRecipe() {
     const [recipeName, setRecipeName] = useState("");
     const [recipeDescription, setRecipeDescription] = useState("");
+    const [recipeInstructions, setRecipeInstructions] = useState("");
+
 
 
     const saveRecipe = async () => {
@@ -18,6 +20,7 @@ export default function CreateRecipe() {
                 id: Date.now().toString(),
                 title: recipeName,
                 description: recipeDescription,
+                instructions: recipeInstructions,
                 date: new Date().toISOString()
             });
 
@@ -42,11 +45,21 @@ export default function CreateRecipe() {
                 style={styles.input}
             />
 
-            <Text style={styles.header}>Recipe</Text>
+            <Text style={styles.header}>Recipe decription</Text>
             <TextInput
-                placeholder='Recipe description'
+                placeholder='Short recipe description'
                 value={recipeDescription}
                 onChangeText={setRecipeDescription}
+                autoCapitalize='sentences'
+                style={[styles.input, styles.multilineTextShort]}
+                multiline
+            />
+
+            <Text style={styles.header}>Recipe instructions</Text>
+            <TextInput
+                placeholder='Recipe instrucitons'
+                value={recipeInstructions}
+                onChangeText={setRecipeInstructions}
                 autoCapitalize='sentences'
                 style={[styles.input, styles.multilineText]}
                 multiline
@@ -79,9 +92,13 @@ const styles = StyleSheet.create({
     input: {
         padding: 10,
         borderRadius: 5,
-        borderWidth: 3,
+        borderWidth: 1,
         borderColor: colors.border,
         backgroundColor: colors.surface
+    },
+
+    multilineTextShort: {
+        minHeight: 75,
     },
 
     multilineText: {
@@ -91,7 +108,7 @@ const styles = StyleSheet.create({
     pressable: {
         padding: 10,
         alignItems: "center",
-        borderRadius: 5,
+        borderRadius: 3,
         backgroundColor: colors.primary
     },
 
