@@ -1,6 +1,7 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { colors } from "./theme/colors"
 
 
 import Home from './screens/Home';
@@ -12,21 +13,27 @@ const Tab = createBottomTabNavigator();
 export default function App() {
   return (
     <NavigationContainer>
-      <Tab.Navigator>
+      <Tab.Navigator
+        screenOptions={{
+          tabBarActiveTintColor: colors.primary,
+          tabBarInactiveTintColor: colors.textSecondary,
+          tabBarStyle: { position: 'absolute' },
+        }}
+      >
         <Tab.Screen
           name="Home"
           component={Home}
-          options={{ title: 'Home', tabBarIcon: () => <Ionicons name="home" size={20} />, tabBarAccessibilityLabel: 'Homescreen tab' }}
+          options={{ title: 'Home', tabBarIcon: ({ color }) => <Ionicons name="home" size={20} color={color} />, tabBarAccessibilityLabel: 'Homescreen tab' }}
         />
         <Tab.Screen
           name="Create recipe"
           component={CreateRecipe}
-          options={{ title: 'Create Recipe', tabBarIcon: () => <Ionicons name="pencil" size={20} />, tabBarAccessibilityLabel: 'Create recipe tab' }}
+          options={{ title: 'Create Recipe', tabBarIcon: ({ color }) => <Ionicons name="pencil" size={20} color={color} />, tabBarAccessibilityLabel: 'Create recipe tab' }}
         />
         <Tab.Screen
           name="Profile"
           component={Profile}
-          options={{ title: 'Profile', tabBarIcon: () => <Ionicons name="person" size={20} />, tabBarAccessibilityLabel: 'Profile tab' }}
+          options={{ title: 'Profile', tabBarIcon: ({ color }) => <Ionicons name="person" size={20} color={color} />, tabBarAccessibilityLabel: 'Profile tab' }}
         />
       </Tab.Navigator>
     </NavigationContainer>
