@@ -6,16 +6,18 @@ import { colors } from "../theme/colors"
 
 export default function CreateRecipe() {
     const [recipeName, setRecipeName] = useState("");
+    const [recipeDescription, setRecipeDescription] = useState("");
+
 
     const saveRecipe = async () => {
         try {
             const existingRecipes = await AsyncStorage.getItem('recipes');
-
             let recipes = existingRecipes ? JSON.parse(existingRecipes) : [];
 
             recipes.push({
                 id: Date.now().toString(),
                 title: recipeName,
+                description: recipeDescription,
                 date: new Date().toISOString()
             });
 
@@ -37,8 +39,18 @@ export default function CreateRecipe() {
                 value={recipeName}
                 onChangeText={setRecipeName}
                 autoCapitalize='sentences'
-                style={styles.input} />
+                style={styles.input}
+            />
 
+            <Text style={styles.header}>Recipe</Text>
+            <TextInput
+                placeholder='Recipe description'
+                value={recipeDescription}
+                onChangeText={setRecipeDescription}
+                autoCapitalize='sentences'
+                style={[styles.input, styles.multilineText]}
+                multiline
+            />
             <Pressable
                 style={styles.pressable}
                 onPress={() => saveRecipe()}
@@ -70,6 +82,10 @@ const styles = StyleSheet.create({
         borderWidth: 3,
         borderColor: colors.border,
         backgroundColor: colors.surface
+    },
+
+    multilineText: {
+        minHeight: 100,
     },
 
     pressable: {
