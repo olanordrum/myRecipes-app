@@ -25,9 +25,14 @@ export default function Home() {
     return (
         <View style={styles.container}>
             {recipes.map((recipe) => (
-                <Text>
-                    {recipe.title}
-                </Text>
+                <View key={recipe.id}>
+                    <Text>
+                        {recipe.title}
+                    </Text>
+                    <Text>
+                        {recipe.description}
+                    </Text>
+                </View>
             ))}
         </View>
     )
