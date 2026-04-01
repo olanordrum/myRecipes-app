@@ -8,7 +8,7 @@ export default function CreateRecipe() {
     const [recipeName, setRecipeName] = useState("");
     const [recipeDescription, setRecipeDescription] = useState("");
     const [recipeInstructions, setRecipeInstructions] = useState("");
-
+    let isValid = recipeName.trim() !== ""
 
 
     const saveRecipe = async () => {
@@ -65,7 +65,8 @@ export default function CreateRecipe() {
                 multiline
             />
             <Pressable
-                style={styles.pressable}
+                style={isValid ? styles.pressable : [styles.pressable, styles.disabled]}
+                disabled={!isValid}
                 onPress={() => saveRecipe()}
             >
                 <Text style={styles.pressableText}>
@@ -110,6 +111,10 @@ const styles = StyleSheet.create({
         alignItems: "center",
         borderRadius: 3,
         backgroundColor: colors.primary
+    },
+
+    disabled: {
+        backgroundColor: colors.disabled
     },
 
     pressableText: {
