@@ -1,22 +1,23 @@
-import { View, Text, StyleSheet, Divider } from "react-native"
+import { View, Text, StyleSheet, Pressable } from "react-native"
 import { colors } from "../theme/colors"
 import { formatDate } from "./utils";
 
-const RecipeCard = ({ recipe }) => {
+const RecipeCard = ({ recipe, onPress }) => {
     return (
-        <View style={styles.card}>
-            <View style={styles.titleRow}>
+        <Pressable onPress={onPress}>
+            <View style={styles.card}>
+                <View style={styles.titleRow}>
+                    <Text>
+                        {recipe.title}
+                    </Text>
+                    <Text>{formatDate(recipe.date)}</Text>
+                </View>
+                <View style={styles.divider} />
                 <Text>
-                    {recipe.title}
+                    {recipe.description}
                 </Text>
-                <Text>{formatDate(recipe.date)}</Text>
             </View>
-            <View style={styles.divider} />
-            <Text>
-                {recipe.description}
-            </Text>
-
-        </View>
+        </Pressable>
     )
 }
 export default RecipeCard;
