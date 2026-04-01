@@ -8,5 +8,7 @@ export const colors = {
     text: "#1A1A1A",
     textSecondary: "#5a5a5a",
 
-    border: "#E0E0E0",
+    disabled: "grey",
+
+    border: "#a4a4a4",
 }
