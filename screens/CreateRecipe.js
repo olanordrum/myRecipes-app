@@ -1,4 +1,4 @@
-import { View, Text, TextInput, StyleSheet, Pressable } from 'react-native';
+import { View, Text, TextInput, StyleSheet, Pressable, Keyboard } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useState } from 'react';
 import { colors } from "../theme/colors"
@@ -12,6 +12,7 @@ export default function CreateRecipe() {
 
 
     const saveRecipe = async () => {
+        Keyboard.dismiss();
         try {
             const existingRecipes = await AsyncStorage.getItem('recipes');
             let recipes = existingRecipes ? JSON.parse(existingRecipes) : [];
@@ -28,6 +29,8 @@ export default function CreateRecipe() {
 
             //Erasing the states
             setRecipeName('');
+            setRecipeDescription('');
+            setRecipeInstructions('');
             alert("Recipe saved!");
         } catch (error) {
             console.log("Error saving recipe", error);
@@ -43,6 +46,8 @@ export default function CreateRecipe() {
                 onChangeText={setRecipeName}
                 autoCapitalize='sentences'
                 style={styles.input}
+                returnKeyType="done"
+                onSubmitEditing={Keyboard.dismiss}
             />
 
             <Text style={styles.header}>Recipe decription</Text>
@@ -53,16 +58,23 @@ export default function CreateRecipe() {
                 autoCapitalize='sentences'
                 style={[styles.input, styles.multilineTextShort]}
                 multiline
+                returnKeyType="done"
+                onSubmitEditing={Keyboard.dismiss}
+                submitBehavior={'blurAndSubmit'}
+
             />
 
             <Text style={styles.header}>Recipe instructions</Text>
             <TextInput
-                placeholder='Recipe instrucitons'
+                placeholder='Recipe instructions'
                 value={recipeInstructions}
                 onChangeText={setRecipeInstructions}
                 autoCapitalize='sentences'
                 style={[styles.input, styles.multilineText]}
                 multiline
+                returnKeyType="done"
+                onSubmitEditing={Keyboard.dismiss}
+                submitBehavior={'blurAndSubmit'}
             />
             <Pressable
                 style={isValid ? styles.pressable : [styles.pressable, styles.disabled]}

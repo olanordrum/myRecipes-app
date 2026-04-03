@@ -4,7 +4,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { colors } from "./theme/colors"
 
 
-import Home from './screens/Home';
+import HomeStackNavigator from './HomeStackNavigator';
 import CreateRecipe from './screens/CreateRecipe';
 import Profile from "./screens/Profile";
 
@@ -21,8 +21,8 @@ export default function App() {
         }}
       >
         <Tab.Screen
-          name="Home"
-          component={Home}
+          name="HomeStackNavigator"
+          component={HomeStackNavigator}
           options={{ title: 'Home', tabBarIcon: ({ color }) => <Ionicons name="home" size={20} color={color} />, tabBarAccessibilityLabel: 'Homescreen tab' }}
         />
         <Tab.Screen

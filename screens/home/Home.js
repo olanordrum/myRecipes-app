@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Button, StyleSheet } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import RecipeCard from '../components/RecipeCard';
-import { colors } from "../theme/colors"
+import { useNavigation } from "@react-navigation/native";
+import RecipeCard from '../../components/RecipeCard';
+import { colors } from "../../theme/colors"
 
 
 export default function Home() {
+    const navigation = useNavigation();
     const [recipes, setRecipes] = useState([]);
 
     useEffect(() => {
@@ -13,7 +15,6 @@ export default function Home() {
             try {
                 const existingRecipes = await AsyncStorage.getItem('recipes');
                 const parsed = existingRecipes ? JSON.parse(existingRecipes) : [];
-                console.log(parsed);
                 setRecipes(parsed);
             } catch (error) {
                 console.log("Error getting recipes:", error);
@@ -26,7 +27,11 @@ export default function Home() {
     return (
         <View style={styles.container}>
             {recipes.map((recipe) => (
-                <RecipeCard key={recipe.id} recipe={recipe} />
+                <RecipeCard
+                    key={recipe.id}
+                    recipe={recipe}
+                    onPress={() => navigation.navigate("Recipe", { recipe })}
+                />
             ))}
         </View>
     )
