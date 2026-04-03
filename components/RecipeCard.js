@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet, Pressable } from "react-native"
 import { colors } from "../theme/colors"
-import { formatDate } from "./utils";
+import { formatDate } from "../utils";
 
 const RecipeCard = ({ recipe, onPress }) => {
     return (
