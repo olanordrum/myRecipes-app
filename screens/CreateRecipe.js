@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { colors } from "../theme/colors"
 import IngredientInput from '../components/IngredientInput';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { BottomTabBar } from '@react-navigation/bottom-tabs';
 
 
 
@@ -11,8 +12,6 @@ export default function CreateRecipe() {
     const [recipeName, setRecipeName] = useState("");
     const [recipeDescription, setRecipeDescription] = useState("");
     const [ingredients, setIngredients] = useState([]);
-    const [ingredientName, setIngredientName] = useState("");
-    const [ingredientMeasure, setIngredientMeasure] = useState("");
     const [recipeInstructions, setRecipeInstructions] = useState("");
     let isValid = recipeName.trim() !== "";
 
@@ -37,6 +36,7 @@ export default function CreateRecipe() {
             setRecipeName('');
             setRecipeDescription('');
             setRecipeInstructions('');
+            setIngredients("");
             alert("Recipe saved!");
         } catch (error) {
             console.log("Error saving recipe", error);
@@ -174,6 +174,7 @@ const styles = StyleSheet.create({
         backgroundColor: colors.surface,
 
     },
+
     deleteButton: {
         paddingHorizontal: 10,
         borderRadius: 5,

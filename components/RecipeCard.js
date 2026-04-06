@@ -36,6 +36,7 @@ const styles = StyleSheet.create({
         justifyContent: "space-between",
         flexDirection: "row",
     },
+
     divider: {
         height: 1,
         backgroundColor: colors.border,
