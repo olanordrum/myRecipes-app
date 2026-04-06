@@ -26,6 +26,7 @@ export default function CreateRecipe() {
                 id: Date.now().toString(),
                 title: recipeName,
                 description: recipeDescription,
+                ingredients: ingredients,
                 instructions: recipeInstructions,
                 date: new Date().toISOString()
             });

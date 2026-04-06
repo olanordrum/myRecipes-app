@@ -16,6 +16,14 @@ export default function RecipeDetailScreen({ route }) {
             <View style={styles.divider} />
             <Text>{recipe.description}</Text>
             <View style={styles.divider} />
+            {recipe.ingredients.map((ingredient, index) => (
+                <View key={index} style={styles.ingredientRow}>
+                    <Text >{ingredient.name}</Text>
+                    <Text >{ingredient.measure}</Text>
+                </View>
+
+            ))}
+            <View style={styles.divider} />
             <Text>{recipe.instructions}</Text>
         </View>
     )
@@ -41,6 +49,11 @@ const styles = StyleSheet.create({
 
     date: {
         color: colors.textSecondary
+    },
+
+    ingredientRow: {
+        flexDirection: "row",
+        justifyContent: "space-between"
     },
 
     divider: {
