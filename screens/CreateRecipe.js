@@ -76,7 +76,7 @@ export default function CreateRecipe() {
             }} />
 
             <View style={styles.ingredientContainer}>
-                {ingredients.map((item, index) => (
+                {ingredients && ingredients.map((item, index) => (
                     <View key={index} style={styles.ingredientRow}>
                         <View style={styles.name}><Text>{item.name}</Text></View>
                         <View style={styles.measure}><Text>{item.measure}</Text></View>
@@ -120,10 +120,10 @@ export default function CreateRecipe() {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
         padding: 20,
         gap: 10,
-        backgroundColor: colors.background
+        backgroundColor: colors.background,
+        paddingBottom: 100
     },
 
     header: {
@@ -186,7 +186,7 @@ const styles = StyleSheet.create({
         padding: 10,
         alignItems: "center",
         borderRadius: 3,
-        backgroundColor: colors.primary
+        backgroundColor: colors.primary,
     },
 
     disabled: {
