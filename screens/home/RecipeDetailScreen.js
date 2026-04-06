@@ -16,7 +16,7 @@ export default function RecipeDetailScreen({ route }) {
             <View style={styles.divider} />
             <Text>{recipe.description}</Text>
             <View style={styles.divider} />
-            {recipe.ingredients.map((ingredient, index) => (
+            {recipe.ingredients && recipe.ingredients.map((ingredient, index) => (
                 <View key={index} style={styles.ingredientRow}>
                     <Text >{ingredient.name}</Text>
                     <Text >{ingredient.measure}</Text>
