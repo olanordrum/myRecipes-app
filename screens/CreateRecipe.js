@@ -1,14 +1,20 @@
-import { View, Text, TextInput, StyleSheet, Pressable, Keyboard } from 'react-native';
+import { ScrollView, View, Text, TextInput, StyleSheet, Pressable, Keyboard } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useState } from 'react';
 import { colors } from "../theme/colors"
+import IngredientInput from '../components/IngredientInput';
+import Ionicons from '@expo/vector-icons/Ionicons';
+
 
 
 export default function CreateRecipe() {
     const [recipeName, setRecipeName] = useState("");
     const [recipeDescription, setRecipeDescription] = useState("");
+    const [ingredients, setIngredients] = useState([]);
+    const [ingredientName, setIngredientName] = useState("");
+    const [ingredientMeasure, setIngredientMeasure] = useState("");
     const [recipeInstructions, setRecipeInstructions] = useState("");
-    let isValid = recipeName.trim() !== ""
+    let isValid = recipeName.trim() !== "";
 
 
     const saveRecipe = async () => {
@@ -37,8 +43,9 @@ export default function CreateRecipe() {
         }
     }
 
+
     return (
-        <View style={styles.container}>
+        <ScrollView contentContainerStyle={styles.container}>
             <Text style={styles.header}>Recipe name</Text>
             <TextInput
                 placeholder="Recipe name"
@@ -63,6 +70,27 @@ export default function CreateRecipe() {
                 submitBehavior={'blurAndSubmit'}
 
             />
+            <Text style={styles.header}>Ingredients</Text>
+            <IngredientInput onAdd={(ingredient) => {
+                setIngredients(prev => [...prev, ingredient]);
+            }} />
+
+            <View style={styles.ingredientContainer}>
+                {ingredients.map((item, index) => (
+                    <View key={index} style={styles.ingredientRow}>
+                        <View style={styles.name}><Text>{item.name}</Text></View>
+                        <View style={styles.measure}><Text>{item.measure}</Text></View>
+                        <Pressable
+                            style={styles.deleteButton}
+                            onPress={
+                                () => setIngredients(ingredientsList => ingredientsList.filter((_, i) => i !== index))
+                            }>
+                            <Ionicons name="close" size={20} color={"red"} />
+                        </Pressable>
+                    </View>
+                ))
+                }
+            </View>
 
             <Text style={styles.header}>Recipe instructions</Text>
             <TextInput
@@ -86,7 +114,7 @@ export default function CreateRecipe() {
                 </Text>
             </Pressable>
 
-        </View>
+        </ScrollView >
     )
 }
 
@@ -97,6 +125,7 @@ const styles = StyleSheet.create({
         gap: 10,
         backgroundColor: colors.background
     },
+
     header: {
         color: colors.text,
         fontSize: 20
@@ -116,6 +145,41 @@ const styles = StyleSheet.create({
 
     multilineText: {
         minHeight: 100,
+    },
+
+    ingredientContainer: {
+        gap: 10
+    },
+
+    ingredientRow: {
+        flexDirection: "row",
+        alignItems: 'flex-start',
+        gap: 10,
+    },
+
+    measure: {
+        flex: 1,
+        padding: 10,
+        borderRadius: 5,
+        color: colors.textSecondary,
+        backgroundColor: colors.surface,
+    },
+
+    name: {
+        flex: 1,
+        padding: 10,
+        borderRadius: 5,
+        color: colors.text,
+        fontWeight: "500",
+        backgroundColor: colors.surface,
+
+    },
+    deleteButton: {
+        paddingHorizontal: 10,
+        borderRadius: 5,
+        backgroundColor: colors.surface,
+        justifyContent: "center",
+        alignSelf: "stretch"
     },
 
     pressable: {
