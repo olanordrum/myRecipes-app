@@ -10,9 +10,12 @@ const RecipeCard = ({ recipe, onPress }) => {
                     <Text>
                         {recipe.title}
                     </Text>
-                    <Text>{formatDate(recipe.date)}</Text>
+                    <Text style={styles.textDate}>{formatDate(recipe.date)}</Text>
                 </View>
                 <View style={styles.divider} />
+                <Text>
+                    {recipe.description}
+                </Text>
                 <Text>
                     {recipe.description}
                 </Text>
@@ -36,6 +39,10 @@ const styles = StyleSheet.create({
         justifyContent: "space-between",
         flexDirection: "row",
     },
+    textDate: {
+        color: colors.textSecondary
+    },
+
     divider: {
         height: 1,
         backgroundColor: colors.border,

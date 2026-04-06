@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { View, Button, StyleSheet } from 'react-native';
+import { View, StyleSheet, FlatList } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from "@react-navigation/native";
 import RecipeCard from '../../components/RecipeCard';
@@ -25,24 +25,22 @@ export default function Home() {
     }, []);
 
     return (
-        <View style={styles.container}>
-            {recipes.map((recipe) => (
-                <RecipeCard
-                    key={recipe.id}
-                    recipe={recipe}
-                    onPress={() => navigation.navigate("Recipe", { recipe })}
-                />
-            ))}
-        </View>
+        <FlatList
+            data={recipes}
+            renderItem={({ item }) => <RecipeCard recipe={item} onPress={() => navigation.navigate("Recipe", { recipe: item })} />}
+            keyExtractor={(item) => item.id}
+            contentContainerStyle={styles.container}
+            inverted
+        />
     )
 }
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        padding: 10,
-        paddingTop: 20,
         gap: 10,
-        backgroundColor: colors.background
-    }
+        padding: 10,
+        paddingTop: 200, //Inverted flatlist translates "top" to "bottom"
+        backgroundColor: colors.background,
+        paddingBottom: 20
+    },
 })
