@@ -26,11 +26,11 @@ export default function Home() {
 
     return (
         <FlatList
-            data={recipes}
+            data={[...recipes].reverse()}
             renderItem={({ item }) => <RecipeCard recipe={item} onPress={() => navigation.navigate("Recipe", { recipe: item })} />}
             keyExtractor={(item) => item.id}
             contentContainerStyle={styles.container}
-            inverted
+
         />
     )
 }
@@ -39,7 +39,6 @@ const styles = StyleSheet.create({
     container: {
         gap: 10,
         padding: 10,
-        paddingTop: 200, //Inverted flatlist translates "top" to "bottom"
         backgroundColor: colors.background,
         paddingBottom: 20
     },
