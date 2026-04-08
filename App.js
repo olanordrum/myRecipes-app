@@ -1,41 +1,38 @@
 import { NavigationContainer } from "@react-navigation/native";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import Ionicons from '@expo/vector-icons/Ionicons';
-import { colors } from "./theme/colors"
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 
-import HomeStackNavigator from './HomeStackNavigator';
-import CreateRecipe from './screens/CreateRecipe';
-import Profile from "./screens/Profile";
+import OneboardingOne from './screens/onboarding/OnboardingOne';
+import OneboardingTwo from './screens/onboarding/OnboardingTwo';
+import MainTabs from "./navigation/MainTabs";
 
-const Tab = createBottomTabNavigator();
+
+const OnboardingStack = createNativeStackNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Tab.Navigator
-        screenOptions={{
-          tabBarActiveTintColor: colors.primary,
-          tabBarInactiveTintColor: colors.textSecondary,
-          tabBarStyle: { position: 'absolute' },
-        }}
+
+      <OnboardingStack.Navigator
+        initialRouteName="OnboardingOne"
+        screenOptions={{ headerShown: false }}
       >
-        <Tab.Screen
-          name="HomeStackNavigator"
-          component={HomeStackNavigator}
-          options={{ title: 'Home', tabBarIcon: ({ color }) => <Ionicons name="home" size={20} color={color} />, tabBarAccessibilityLabel: 'Homescreen tab' }}
+
+        <OnboardingStack.Screen
+          name="OnboardingOne"
+          component={OneboardingOne}
         />
-        <Tab.Screen
-          name="Create recipe"
-          component={CreateRecipe}
-          options={{ title: 'Create Recipe', tabBarIcon: ({ color }) => <Ionicons name="pencil" size={20} color={color} />, tabBarAccessibilityLabel: 'Create recipe tab' }}
+
+        <OnboardingStack.Screen
+          name="OnboardingTwo"
+          component={OneboardingTwo}
         />
-        <Tab.Screen
-          name="Profile"
-          component={Profile}
-          options={{ title: 'Profile', tabBarIcon: ({ color }) => <Ionicons name="person" size={20} color={color} />, tabBarAccessibilityLabel: 'Profile tab' }}
-        />
-      </Tab.Navigator>
+
+        <OnboardingStack.Screen
+          name="MainTabs"
+          component={MainTabs} />
+
+      </OnboardingStack.Navigator>
     </NavigationContainer>
   );
 }
