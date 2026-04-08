@@ -7,7 +7,7 @@ import { colors } from "./theme/colors"
 import OneboardingOne from './screens/onboarding/OnboardingOne';
 import OneboardingTwo from './screens/onboarding/OnboardingTwo';
 
-import HomeStackNavigator from './HomeStackNavigator';
+import { HomeStack } from './navigation/HomeStack';
 import CreateRecipe from './screens/CreateRecipe';
 import Profile from "./screens/Profile";
 
@@ -25,8 +25,8 @@ function MainTabs() {
       }}
     >
       <Tab.Screen
-        name="HomeStackNavigator"
-        component={HomeStackNavigator}
+        name="HomeStack"
+        component={HomeStack}
         options={{ title: 'Home', tabBarIcon: ({ color }) => <Ionicons name="home" size={20} color={color} />, tabBarAccessibilityLabel: 'Homescreen tab' }}
       />
       <Tab.Screen
@@ -45,13 +45,11 @@ function MainTabs() {
 
 export default function App() {
   return (
-    <NavigationContainer
-    >
+    <NavigationContainer>
       <OnboardingStack.Navigator
         initialRouteName="OnboardingOne"
         screenOptions={{ headerShown: false }}
       >
-
 
         <OnboardingStack.Screen
           name="OnboardingOne"
