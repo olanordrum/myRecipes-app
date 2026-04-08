@@ -25,7 +25,7 @@ export default function OneboardingTwo() {
                 <Text style={styles.description}>
                     Create and save your favorite recipes in the app
                 </Text>
-                <Image source={require('../../assets/homeScreen.png')} style={styles.image} />
+                <Image source={require('../../assets/createRecipe.png')} style={styles.image} />
 
             </View>
             <Pressable
