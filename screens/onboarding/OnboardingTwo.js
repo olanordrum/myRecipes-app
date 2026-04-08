@@ -13,7 +13,7 @@ export default function OneboardingTwo() {
             </Text>
             <Pressable
                 style={styles.button}
-                onPress={() => navigation.navigate('OnboardingTwo')}
+                onPress={() => navigation.replace('MainTabs')}
             >
                 <Text style={styles.buttonText}>Next</Text>
             </Pressable>
@@ -23,6 +23,7 @@ export default function OneboardingTwo() {
 
 const styles = StyleSheet.create({
     container: {
+        flex: 1,
         justifyContent: "center",
         alignItems: "center"
     },

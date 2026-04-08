@@ -46,23 +46,27 @@ function MainTabs() {
 export default function App() {
   return (
     <NavigationContainer
-      initialRouteName="OnboardingOne"
-      screenOptions={{ headerShown: false }}
     >
-      <OnboardingStack.Screen
-        name="OnboardingOne"
-        component={OneboardingOne}
-        options={{ title: 'OnboardingOne' }}
-      />
-      <OnboardingStack.Screen
-        name="OnboardingTwo"
-        component={OneboardingTwo}
-        options={{ title: 'OnboardingTwo' }}
-      />
-      <OnboardingStack.Screen
-        name="mainTabs"
-        component={MainTabs} />
+      <OnboardingStack.Navigator
+        initialRouteName="OnboardingOne"
+        screenOptions={{ headerShown: false }}
+      >
 
+
+        <OnboardingStack.Screen
+          name="OnboardingOne"
+          component={OneboardingOne}
+          options={{ title: 'OnboardingOne' }}
+        />
+        <OnboardingStack.Screen
+          name="OnboardingTwo"
+          component={OneboardingTwo}
+          options={{ title: 'OnboardingTwo' }}
+        />
+        <OnboardingStack.Screen
+          name="MainTabs"
+          component={MainTabs} />
+      </OnboardingStack.Navigator>
     </NavigationContainer>
   );
 }
