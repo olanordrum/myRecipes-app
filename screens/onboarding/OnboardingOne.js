@@ -11,7 +11,10 @@ export default function OneboardingOne() {
         <View style={styles.container}>
             <TouchableOpacity
                 style={styles.skipButton}
-                onPress={() => navigation.replace('MainTabs')}>
+                onPress={() => navigation.replace('MainTabs')}
+                accessibilityRole="button"
+                accessibilityHint="Skip onboarding, go straight to app"
+            >
                 <Text style={styles.skipButtonText}>
                     Skip
                 </Text>
@@ -19,18 +22,20 @@ export default function OneboardingOne() {
 
             </TouchableOpacity>
             <View style={styles.content}>
-                <Text style={styles.title}>
+                <Text style={styles.title} accessibilityRole="header">
                     Organize your recipes
                 </Text>
                 <Text style={styles.description}>
                     Save, manage and find your favorite recipes in one place
                 </Text>
-                <Image source={require('../../assets/homeScreen.png')} style={styles.image} />
+                <Image source={require('../../assets/homeScreen.png')} style={styles.image} accessibilityLabel='Image off all recipe entries' />
 
             </View>
             <Pressable
                 style={styles.button}
                 onPress={() => navigation.navigate('OnboardingTwo')}
+                accessibilityRole="button"
+                accessibilityHint="Continue to next onboarding screen"
             >
                 <Text style={styles.buttonText}>Continue</Text>
             </Pressable>

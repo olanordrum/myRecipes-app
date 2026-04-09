@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { View, StyleSheet, FlatList } from 'react-native';
+import { StyleSheet, FlatList } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from "@react-navigation/native";
 import RecipeCard from '../../components/RecipeCard';

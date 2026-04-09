@@ -28,6 +28,9 @@ export default function IngredientInput({ onAdd }) {
                 value={name}
                 onChangeText={setName}
                 style={styles.input}
+                accessibilityRole="text"
+                accessibilityLabel="Ingredient name"
+                accessibilityHint="Sets one ingredient name for the recipe"
             />
 
             <TextInput
@@ -35,15 +38,21 @@ export default function IngredientInput({ onAdd }) {
                 value={measure}
                 onChangeText={setMeasure}
                 style={styles.input}
+                accessibilityRole="text"
+                accessibilityLabel="Ingredient measure"
+                accessibilityHint="Sets measurement for ingredient"
             />
 
             <Pressable
                 onPress={handleAdd}
                 style={isValid ? styles.button : [styles.button, styles.disabled]}
-                disabled={!isValid}>
+                disabled={!isValid}
+                accessibilityRole="button"
+                accessibilityHint="Adds ingredient to recipe"
+            >
                 <Text style={styles.text}>Add</Text>
             </Pressable>
-        </View>
+        </View >
     )
 }
 

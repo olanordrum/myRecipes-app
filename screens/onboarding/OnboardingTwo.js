@@ -12,26 +12,30 @@ export default function OneboardingTwo() {
         <View style={styles.container}>
             <TouchableOpacity
                 style={styles.skipButton}
-                onPress={() => navigation.replace('MainTabs')}>
+                onPress={() => navigation.replace('MainTabs')}
+                accessibilityRole="button"
+                accessibilityHint="Skip onboarding, go straight to app"
+            >
                 <Text style={styles.skipButtonText}>
                     Skip
                 </Text>
                 <Ionicons name="chevron-forward-outline" size={20} color={colors.primary} />
             </TouchableOpacity>
             <View style={styles.content}>
-                <Text style={styles.title}>
+                <Text style={styles.title} accessibilityRole="header">
                     Save your favourites
                 </Text>
                 <Text style={styles.description}>
                     Create and save your favorite recipes in the app
                 </Text>
-                <Image source={require('../../assets/createRecipe.png')} style={styles.image} />
+                <Image source={require('../../assets/createRecipe.png')} style={styles.image} accessibilityLabel='Image off create recipe form' />
 
             </View>
             <Pressable
                 style={styles.button}
                 onPress={() => navigation.replace('MainTabs')}
-
+                accessibilityRole="button"
+                accessibilityHint="Continue to app"
             >
                 <Text style={styles.buttonText}>Continue</Text>
             </Pressable>

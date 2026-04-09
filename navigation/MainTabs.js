@@ -20,17 +20,17 @@ export default function MainTabs() {
                 name="HomeStack"
                 component={HomeStack}
                 screenOptions={{ headerShown: false }}
-                options={{ title: 'Home', tabBarIcon: ({ color }) => <Ionicons name="home" size={20} color={color} />, tabBarAccessibilityLabel: 'Homescreen tab' }}
+                options={{ title: 'Home', tabBarIcon: ({ color }) => <Ionicons name="home" size={20} color={color} />, tabBarAccessibilityLabel: 'Navigates to homescreen' }}
             />
             <Tab.Screen
                 name="Create recipe"
                 component={CreateRecipe}
-                options={{ title: 'Create Recipe', tabBarIcon: ({ color }) => <Ionicons name="pencil" size={20} color={color} />, tabBarAccessibilityLabel: 'Create recipe tab' }}
+                options={{ title: 'Create Recipe', tabBarIcon: ({ color }) => <Ionicons name="pencil" size={20} color={color} />, tabBarAccessibilityLabel: 'Navigates to create recipe tab' }}
             />
             <Tab.Screen
                 name="Profile"
                 component={Profile}
-                options={{ title: 'Profile', tabBarIcon: ({ color }) => <Ionicons name="person" size={20} color={color} />, tabBarAccessibilityLabel: 'Profile tab' }}
+                options={{ title: 'Profile', tabBarIcon: ({ color }) => <Ionicons name="person" size={20} color={color} />, tabBarAccessibilityLabel: 'Navigates to profile tab ' }}
             />
         </Tab.Navigator >
     )
