@@ -1,11 +1,11 @@
-import { Image, Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Pressable, StyleSheet, Text, TouchableOpacity, View, TextInput, Keyboard } from 'react-native';
 import { colors } from "../../theme/colors"
 import { useNavigation } from '@react-navigation/native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
 
 
-export default function OneboardingTwo() {
+export default function OnboardingThree({ username, setUsername }) {
     const navigation = useNavigation();
 
     return (
@@ -23,21 +23,34 @@ export default function OneboardingTwo() {
             </TouchableOpacity>
             <View style={styles.content}>
                 <Text style={styles.title} accessibilityRole="header">
-                    Save your favourites
+                    Enter your name
                 </Text>
                 <Text style={styles.description}>
-                    Create and save your favorite recipes in the app
+                    Finish onboarding, and start using My Recipes
                 </Text>
-                <Image source={require('../../assets/createRecipe.png')} style={styles.image} accessibilityLabel='Image off create recipe form' />
+                <View style={styles.inputContainer}>
+                    <TextInput
+                        placeholder="Name"
+                        value={username}
+                        onChangeText={setUsername}
+                        autoCapitalize='sentences'
+                        style={styles.input}
+                        returnKeyType="done"
+                        onSubmitEditing={Keyboard.dismiss}
+                        accessibilityRole="text"
+                        accessibilityLabel="Your name"
+                        accessibilityHint="Set your name"
+                    />
+                </View>
 
             </View>
             <Pressable
                 style={styles.button}
-                onPress={() => navigation.navigate('OnboardingThree')}
+                onPress={() => navigation.replace('MainTabs')}
                 accessibilityRole="button"
-                accessibilityHint="Continue onboarding"
+                accessibilityHint="Continue to app"
             >
-                <Text style={styles.buttonText}>Continue</Text>
+                <Text style={styles.buttonText}>Finish onboarding</Text>
             </Pressable>
         </View >
     )
@@ -85,12 +98,17 @@ const styles = StyleSheet.create({
         textAlign: 'center'
     },
 
+    inputContainer: {
+        backgroundColor: colors.surface,
+        borderRadius: 12,
+        padding: 12,
+        borderWidth: 1,
+        borderColor: colors.border,
+    },
 
-    image: {
-        maxHeight: 400,
-        resizeMode: 'contain',
-        borderRadius: 16,
-        marginBottom: 20,
+    input: {
+        fontSize: 16,
+        color: colors.text,
     },
 
     button: {

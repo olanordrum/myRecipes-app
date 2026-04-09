@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
 
-export default function OneboardingOne() {
+export default function OnboardingOne() {
     const navigation = useNavigation();
 
     return (
@@ -23,7 +23,7 @@ export default function OneboardingOne() {
             </TouchableOpacity>
             <View style={styles.content}>
                 <Text style={styles.title} accessibilityRole="header">
-                    Organize your recipes
+                    Welcome to My Recipes
                 </Text>
                 <Text style={styles.description}>
                     Save, manage and find your favorite recipes in one place
@@ -100,4 +100,9 @@ const styles = StyleSheet.create({
         alignSelf: 'stretch',
         alignItems: 'center'
     },
+
+    buttonText: {
+        fontWeight: 'bold',
+        color: colors.primaryText
+    }
 })

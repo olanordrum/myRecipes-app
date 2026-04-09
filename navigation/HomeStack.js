@@ -5,14 +5,21 @@ import RecipeDetailSreen from '../screens/home/RecipeDetailScreen'
 
 const HomeStackNav = createNativeStackNavigator();
 
-export function HomeStack() {
+export function HomeStack({ username }) {
     return (
         <HomeStackNav.Navigator>
             <HomeStackNav.Screen
                 name="Home"
-                component={Home}
                 options={{ title: 'Home', headerShown: false }}
-            />
+            >
+                {() => (
+
+                    <Home
+                        username={username}
+                    />
+                )}
+            </HomeStackNav.Screen>
+
             <HomeStackNav.Screen
                 name="Recipe"
                 component={RecipeDetailSreen}

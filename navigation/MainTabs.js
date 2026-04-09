@@ -7,7 +7,7 @@ import Profile from "../screens/Profile";
 
 const Tab = createBottomTabNavigator();
 
-export default function MainTabs() {
+export default function MainTabs({ username, setUsername }) {
     return (
         <Tab.Navigator
             screenOptions={{
@@ -18,10 +18,17 @@ export default function MainTabs() {
         >
             <Tab.Screen
                 name="HomeStack"
-                component={HomeStack}
                 screenOptions={{ headerShown: false }}
                 options={{ title: 'Home', tabBarIcon: ({ color }) => <Ionicons name="home" size={20} color={color} />, tabBarAccessibilityLabel: 'Navigates to homescreen' }}
-            />
+            >
+                {() => (
+                    <HomeStack
+                        username={username}
+                    />
+                )}
+
+            </Tab.Screen>
+
             <Tab.Screen
                 name="Create recipe"
                 component={CreateRecipe}
@@ -29,9 +36,15 @@ export default function MainTabs() {
             />
             <Tab.Screen
                 name="Profile"
-                component={Profile}
                 options={{ title: 'Profile', tabBarIcon: ({ color }) => <Ionicons name="person" size={20} color={color} />, tabBarAccessibilityLabel: 'Navigates to profile tab ' }}
-            />
+            >
+                {() => (
+                    <Profile
+                        username={username}
+                        setUsername={setUsername}
+                    />
+                )}
+            </Tab.Screen>
         </Tab.Navigator >
     )
 }

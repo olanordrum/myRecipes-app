@@ -1,12 +1,12 @@
 import { useState, useCallback } from 'react';
-import { StyleSheet, FlatList } from 'react-native';
+import { StyleSheet, FlatList, View, Text } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation, useFocusEffect } from "@react-navigation/native";
 import RecipeCard from '../../components/RecipeCard';
 import { colors } from "../../theme/colors"
 
 
-export default function Home() {
+export default function Home({ username }) {
     const navigation = useNavigation();
     const [recipes, setRecipes] = useState([]);
 
@@ -26,20 +26,33 @@ export default function Home() {
         ;
 
     return (
-        <FlatList
-            data={[...recipes].reverse()}
-            renderItem={({ item }) => <RecipeCard recipe={item} onPress={() => navigation.navigate("Recipe", { recipe: item })} />}
-            keyExtractor={(item) => item.id}
-            contentContainerStyle={styles.container}
+        <View style={styles.container}>
+            <Text style={styles.header} accessibilityRole="header"> Hello {username}</Text>
+            <FlatList
+                data={[...recipes].reverse()}
+                renderItem={({ item }) => <RecipeCard recipe={item} onPress={() => navigation.navigate("Recipe", { recipe: item })} />}
+                keyExtractor={(item) => item.id}
+                contentContainerStyle={styles.flatListContainer}
 
-        />
+            />
+        </View>
     )
 }
 
 const styles = StyleSheet.create({
     container: {
+        flex: 1,
         gap: 10,
         padding: 10,
+    },
+
+    header: {
+        fontSize: 25,
+        color: colors.text
+    },
+
+    flatListContainer: {
+        gap: 10,
         backgroundColor: colors.background,
         paddingBottom: 150
     },

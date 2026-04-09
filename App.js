@@ -1,15 +1,17 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { useState } from "react";
 
-
-import OneboardingOne from './screens/onboarding/OnboardingOne';
-import OneboardingTwo from './screens/onboarding/OnboardingTwo';
+import OnboardingOne from './screens/onboarding/OnboardingOne';
+import OnboardingTwo from './screens/onboarding/OnboardingTwo';
+import OnboardingThree from './screens/onboarding/OnboardingThree';
 import MainTabs from "./navigation/MainTabs";
 
 
 const OnboardingStack = createNativeStackNavigator();
 
 export default function App() {
+  const [username, setUsername] = useState('');
   return (
     <NavigationContainer>
 
@@ -20,17 +22,35 @@ export default function App() {
 
         <OnboardingStack.Screen
           name="OnboardingOne"
-          component={OneboardingOne}
+          component={OnboardingOne}
         />
 
         <OnboardingStack.Screen
           name="OnboardingTwo"
-          component={OneboardingTwo}
+          component={OnboardingTwo}
         />
 
         <OnboardingStack.Screen
-          name="MainTabs"
-          component={MainTabs} />
+          name="OnboardingThree"
+        >
+          {() => (
+            <OnboardingThree
+              username={username}
+              setUsername={setUsername}
+            />
+          )}
+
+        </OnboardingStack.Screen>
+
+
+        <OnboardingStack.Screen name="MainTabs" >
+          {() => (
+            <MainTabs
+              username={username}
+              setUsername={setUsername}
+            />
+          )}
+        </OnboardingStack.Screen>
 
       </OnboardingStack.Navigator>
     </NavigationContainer>
