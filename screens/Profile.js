@@ -4,8 +4,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { colors } from "../theme/colors"
 
 
-export default function Profile() {
-    const [name, setName] = useState("Name")
+export default function Profile({ username, setUsername }) {
 
     return (
         <View style={styles.container}>
@@ -20,13 +19,13 @@ export default function Profile() {
                 </View>
             </View>
 
-            <Text style={styles.label}>Your name</Text>
+            <Text style={styles.label} accessibilityRole="header">Your name</Text>
 
             <View style={styles.inputContainer}>
                 <TextInput
                     placeholder="Recipe name"
-                    value={name}
-                    onChangeText={setName}
+                    value={username}
+                    onChangeText={setUsername}
                     autoCapitalize='sentences'
                     style={styles.input}
                     returnKeyType="done"
