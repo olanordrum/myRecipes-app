@@ -4,11 +4,13 @@ import { useState } from 'react';
 import { colors } from "../theme/colors"
 import IngredientInput from '../components/IngredientInput';
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { BottomTabBar } from '@react-navigation/bottom-tabs';
+import { useNavigation } from "@react-navigation/native";
 
 
 
 export default function CreateRecipe() {
+    const navigation = useNavigation();
+
     const [recipeName, setRecipeName] = useState("");
     const [recipeDescription, setRecipeDescription] = useState("");
     const [ingredients, setIngredients] = useState([]);
@@ -37,8 +39,9 @@ export default function CreateRecipe() {
             setRecipeName('');
             setRecipeDescription('');
             setRecipeInstructions('');
-            setIngredients("");
+            setIngredients([]);
             alert("Recipe saved!");
+            navigation.goBack();
         } catch (error) {
             console.log("Error saving recipe", error);
         }
@@ -123,8 +126,6 @@ export default function CreateRecipe() {
                 onPress={() => saveRecipe()}
                 accessibilityRole="button"
                 accessibilityHint="Saves recipe"
-                accessibilityHint="Sets recipe description "
-
             >
                 <Text style={styles.pressableText}>
                     Save recipe
