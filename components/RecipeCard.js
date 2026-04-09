@@ -4,17 +4,21 @@ import { formatDate } from "../utils";
 
 const RecipeCard = ({ recipe, onPress }) => {
     return (
-        <Pressable onPress={onPress}>
+        <Pressable
+            onPress={onPress}
+            accessibilityRole="button"
+            accessibilityHint="Opens recipe details"
+        >
             <View style={styles.card}>
                 <View style={styles.titleRow}>
-                    <Text>
+                    <Text accessibilityRole="header">
                         {recipe.title}
                     </Text>
                     <Text style={styles.textDate}>{formatDate(recipe.date)}</Text>
                 </View>
                 <View style={styles.divider} />
                 <Text>
-                    {recipe.description}
+                    {recipe.ing}
                 </Text>
                 <Text>
                     {recipe.description}

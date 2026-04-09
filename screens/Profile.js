@@ -5,7 +5,7 @@ import { colors } from "../theme/colors"
 export default function Profile() {
     return (
         <View style={styles.container}>
-            <Text>
+            <Text accessibilityRole="header">
                 Profile
             </Text>
         </View>

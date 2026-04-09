@@ -46,8 +46,9 @@ export default function CreateRecipe() {
 
 
     return (
-        <ScrollView contentContainerStyle={styles.container}>
-            <Text style={styles.header}>Recipe name</Text>
+        <ScrollView contentContainerStyle={styles.container} accessibilityRole="header" accessibilityLabel='Create a recipe' >
+            <Text style={styles.h1} accessibilityRole="header">Create recipe</Text>
+            <Text style={styles.h2}>Recipe name</Text>
             <TextInput
                 placeholder="Recipe name"
                 value={recipeName}
@@ -56,9 +57,12 @@ export default function CreateRecipe() {
                 style={styles.input}
                 returnKeyType="done"
                 onSubmitEditing={Keyboard.dismiss}
+                accessibilityRole="text"
+                accessibilityLabel="Recipe name, required"
+                accessibilityHint="Sets recipe name"
             />
 
-            <Text style={styles.header}>Recipe decription</Text>
+            <Text style={styles.h2}>Description</Text>
             <TextInput
                 placeholder='Short recipe description'
                 value={recipeDescription}
@@ -69,9 +73,11 @@ export default function CreateRecipe() {
                 returnKeyType="done"
                 onSubmitEditing={Keyboard.dismiss}
                 submitBehavior={'blurAndSubmit'}
-
+                accessibilityRole="text"
+                accessibilityLabel="Short recipe description"
+                accessibilityHint="Sets recipe description "
             />
-            <Text style={styles.header}>Ingredients</Text>
+            <Text style={styles.h2}>Ingredients</Text>
             <IngredientInput onAdd={(ingredient) => {
                 setIngredients(prev => [...prev, ingredient]);
             }} />
@@ -85,7 +91,10 @@ export default function CreateRecipe() {
                             style={styles.deleteButton}
                             onPress={
                                 () => setIngredients(ingredientsList => ingredientsList.filter((_, i) => i !== index))
-                            }>
+                            }
+                            accessibilityRole="button"
+                            accessibilityHint="Deletes ingredient from ingredient list"
+                        >
                             <Ionicons name="close" size={20} color={"red"} />
                         </Pressable>
                     </View>
@@ -93,7 +102,7 @@ export default function CreateRecipe() {
                 }
             </View>
 
-            <Text style={styles.header}>Recipe instructions</Text>
+            <Text style={styles.h2}>Instructions</Text>
             <TextInput
                 placeholder='Recipe instructions'
                 value={recipeInstructions}
@@ -104,11 +113,18 @@ export default function CreateRecipe() {
                 returnKeyType="done"
                 onSubmitEditing={Keyboard.dismiss}
                 submitBehavior={'blurAndSubmit'}
+                accessibilityRole="text"
+                accessibilityLabel="Recipe instructions"
+                accessibilityHint="Sets instructions for recipe "
             />
             <Pressable
                 style={isValid ? styles.pressable : [styles.pressable, styles.disabled]}
                 disabled={!isValid}
                 onPress={() => saveRecipe()}
+                accessibilityRole="button"
+                accessibilityHint="Saves recipe"
+                accessibilityHint="Sets recipe description "
+
             >
                 <Text style={styles.pressableText}>
                     Save recipe
@@ -127,9 +143,15 @@ const styles = StyleSheet.create({
         paddingBottom: 100
     },
 
-    header: {
+    h1: {
+        fontSize: 30,
+        fontWeight: 500,
         color: colors.text,
-        fontSize: 20
+    },
+
+    h2: {
+        color: colors.textSecondary,
+        fontSize: 17
     },
 
     input: {

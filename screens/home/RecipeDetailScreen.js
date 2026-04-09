@@ -10,7 +10,7 @@ export default function RecipeDetailScreen({ route }) {
     return (
         <View style={styles.container}>
             <View style={styles.titleRow}>
-                <Text style={styles.title}>{recipe.title}</Text>
+                <Text style={styles.title} accessibilityRole="header">{recipe.title} </Text>
                 <Text style={styles.date}>{formatDate(recipe.date)}</Text>
             </View>
             <View style={styles.divider} />
