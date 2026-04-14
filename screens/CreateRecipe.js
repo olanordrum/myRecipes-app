@@ -49,7 +49,7 @@ export default function CreateRecipe() {
 
 
     return (
-        <ScrollView contentContainerStyle={styles.container} accessibilityRole="header" accessibilityLabel='Create a recipe' >
+        <ScrollView style={styles.scrollContainer} contentContainerStyle={styles.container} accessibilityRole="header" accessibilityLabel='Create a recipe' >
             <Text style={styles.h1} accessibilityRole="header">Create recipe</Text>
             <Text style={styles.h2}>Recipe name</Text>
             <TextInput
@@ -137,6 +137,10 @@ export default function CreateRecipe() {
 }
 
 const styles = StyleSheet.create({
+    scrollContainer: {
+        backgroundColor: colors.background,
+    },
+
     container: {
         padding: 20,
         gap: 10,

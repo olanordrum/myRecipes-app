@@ -2,9 +2,18 @@ import { useState } from 'react';
 import { View, Text, StyleSheet, TextInput, Keyboard } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { colors } from "../theme/colors"
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 export default function Profile({ username, setUsername }) {
+
+    const saveUsername = async (newUsername) => {
+        try {
+            await AsyncStorage.setItem('username', newUsername);
+        } catch (e) {
+            console.log("error saving username: ", e)
+        }
+    }
 
     return (
         <View style={styles.container}>
@@ -30,6 +39,7 @@ export default function Profile({ username, setUsername }) {
                     style={styles.input}
                     returnKeyType="done"
                     onSubmitEditing={Keyboard.dismiss}
+                    onBlur={() => saveUsername(username)}
                     accessibilityRole="text"
                     accessibilityLabel="Your name"
                     accessibilityHint="Set your name"
