@@ -1,6 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Pressable, StyleSheet, Text, TouchableOpacity, View, TextInput, Keyboard } from 'react-native';
 import { colors } from "../../theme/colors"
+import { useState } from 'react'
 import { useNavigation } from '@react-navigation/native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 

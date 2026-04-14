@@ -16,17 +16,21 @@ export default function App() {
   const [isFirstLaunch, setIsFirstLaunch] = useState(null);
 
   useEffect(() => {
-    const checkOnboarding = async () => {
+    const loadData = async () => {
       try {
-        const value = await AsyncStorage.getItem('hasOnboarded');
-        setIsFirstLaunch(value !== 'true');
+        const onboardingValue = await AsyncStorage.getItem('hasOnboarded');
+        setIsFirstLaunch(onboardingValue !== 'true');
+
+        const storedUsername = await AsyncStorage.getItem('username');
+        setUsername(storedUsername ?? '');
+
       } catch (e) {
         console.log("Error reading onboarding status", e);
         setIsFirstLaunch(true);
       };
     }
 
-    checkOnboarding();
+    loadData();
   }, []);
 
   if (isFirstLaunch === null) return null;
