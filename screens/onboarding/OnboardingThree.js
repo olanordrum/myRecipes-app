@@ -1,3 +1,4 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Pressable, StyleSheet, Text, TouchableOpacity, View, TextInput, Keyboard } from 'react-native';
 import { colors } from "../../theme/colors"
 import { useNavigation } from '@react-navigation/native';
@@ -8,11 +9,20 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 export default function OnboardingThree({ username, setUsername }) {
     const navigation = useNavigation();
 
+    const handleFinish = async () => {
+        try {
+            await AsyncStorage.setItem('hasOnboarded', 'true');
+            navigation.replace('MainTabs');
+        } catch (e) {
+            console.log("error saving onboarding status:", e);
+        }
+    }
+
     return (
         <View style={styles.container}>
             <TouchableOpacity
                 style={styles.skipButton}
-                onPress={() => navigation.replace('MainTabs')}
+                onPress={handleFinish}
                 accessibilityRole="button"
                 accessibilityHint="Skip onboarding, go straight to app"
             >
@@ -46,7 +56,7 @@ export default function OnboardingThree({ username, setUsername }) {
             </View>
             <Pressable
                 style={styles.button}
-                onPress={() => navigation.replace('MainTabs')}
+                onPress={handleFinish}
                 accessibilityRole="button"
                 accessibilityHint="Continue to app"
             >
