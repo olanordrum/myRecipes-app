@@ -1,14 +1,14 @@
 export const colors = {
-    background: "#F0F0F0",
-    surface: "#D9D9D9",
+    background: "#FDFCF9",   // litt varmere, mer “premium”
+    surface: "#eceee3",      // lys og ren (i stedet for grå)
 
-    primary: "#00ACEA",
-    primaryText: "#FFFFFF",
+    primary: "#A3D948",
+    primaryText: "#0F1F07",
 
-    text: "#1A1A1A",
-    textSecondary: "#5a5a5a",
+    text: "#0F1F07",
+    textSecondary: "#4A5A3F",
 
-    disabled: "grey",
+    disabled: "#9CA3AF",
 
-    border: "#a4a4a4",
+    border: "#D6D9CE",
 }
