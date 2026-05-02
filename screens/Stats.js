@@ -5,6 +5,7 @@ import { useFocusEffect } from "@react-navigation/native";
 import { useState, useCallback } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { colors } from "../theme/colors"
+import StatsCard from '../components/StatsCard';
 
 
 export default function Stats() {
@@ -29,9 +30,8 @@ export default function Stats() {
     return (
         <SafeAreaView style={styles.SafeAreaView}>
             <View style={styles.container}>
-                <Text>
-                    {totalRecipes}
-                </Text>
+                <Text style={styles.header} accessibilityRole="header"> Statistics</Text>
+                <StatsCard stat={totalRecipes} />
             </View>
         </SafeAreaView>
     )
@@ -45,8 +45,15 @@ const styles = StyleSheet.create({
 
     container: {
         flex: 1,
+        padding: 10,
+        gap: 10,
         backgroundColor: colors.background,
-        justifyContent: 'center',
-        alignItems: "center"
-    }
+        justifyContent: 'flex-start',
+
+    },
+
+    header: {
+        fontSize: 25,
+        color: colors.text
+    },
 })
