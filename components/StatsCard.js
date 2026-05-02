@@ -1,4 +1,5 @@
-import { View, Text, StyleSheet, Pressable } from "react-native"
+import { View, Text, StyleSheet } from "react-native"
+
 import { colors } from "../theme/colors"
 
 const StatsCard = ({ header, data }) => {
@@ -13,6 +14,8 @@ const StatsCard = ({ header, data }) => {
             <Text accessibilityRole="data">
                 {data}
             </Text>
+
+
 
         </View>
     )
