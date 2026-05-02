@@ -1,3 +1,4 @@
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useState, useEffect } from "react";
@@ -35,47 +36,48 @@ export default function App() {
 
   if (isFirstLaunch === null) return null;
   return (
-    <NavigationContainer>
-
-      <OnboardingStack.Navigator
-        initialRouteName={isFirstLaunch ? "OnboardingOne" : "MainTabs"}
-        screenOptions={{ headerShown: false }}
-      >
-
-        <OnboardingStack.Screen
-          name="OnboardingOne"
-          component={OnboardingOne}
-        />
-
-        <OnboardingStack.Screen
-          name="OnboardingTwo"
-          component={OnboardingTwo}
-        />
-
-        <OnboardingStack.Screen
-          name="OnboardingThree"
+    <SafeAreaProvider>
+      <NavigationContainer>
+        <OnboardingStack.Navigator
+          initialRouteName={isFirstLaunch ? "OnboardingOne" : "MainTabs"}
+          screenOptions={{ headerShown: false }}
         >
-          {() => (
-            <OnboardingThree
-              username={username}
-              setUsername={setUsername}
-            />
-          )}
 
-        </OnboardingStack.Screen>
+          <OnboardingStack.Screen
+            name="OnboardingOne"
+            component={OnboardingOne}
+          />
+
+          <OnboardingStack.Screen
+            name="OnboardingTwo"
+            component={OnboardingTwo}
+          />
+
+          <OnboardingStack.Screen
+            name="OnboardingThree"
+          >
+            {() => (
+              <OnboardingThree
+                username={username}
+                setUsername={setUsername}
+              />
+            )}
+
+          </OnboardingStack.Screen>
 
 
-        <OnboardingStack.Screen name="MainTabs" >
-          {() => (
-            <MainTabs
-              username={username}
-              setUsername={setUsername}
-            />
-          )}
-        </OnboardingStack.Screen>
+          <OnboardingStack.Screen name="MainTabs" >
+            {() => (
+              <MainTabs
+                username={username}
+                setUsername={setUsername}
+              />
+            )}
+          </OnboardingStack.Screen>
 
-      </OnboardingStack.Navigator>
-    </NavigationContainer>
+        </OnboardingStack.Navigator>
+      </NavigationContainer>
+    </SafeAreaProvider>
   );
 }
 

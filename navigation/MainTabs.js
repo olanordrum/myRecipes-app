@@ -15,11 +15,11 @@ export default function MainTabs({ username, setUsername }) {
                 tabBarActiveTintColor: colors.primary,
                 tabBarInactiveTintColor: colors.textSecondary,
                 tabBarStyle: { position: 'absolute' },
+                headerShown: false,
             }}
         >
             <Tab.Screen
                 name="HomeStack"
-                screenOptions={{ headerShown: false }}
                 options={{ title: 'Home', tabBarIcon: ({ color }) => <Ionicons name="home" size={20} color={color} />, tabBarAccessibilityLabel: 'Navigates to homescreen' }}
             >
                 {() => (
@@ -27,9 +27,7 @@ export default function MainTabs({ username, setUsername }) {
                         username={username}
                     />
                 )}
-
             </Tab.Screen>
-
             <Tab.Screen
                 name="Create recipe"
                 component={CreateRecipe}

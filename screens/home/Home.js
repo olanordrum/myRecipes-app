@@ -1,3 +1,4 @@
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { useState, useCallback } from 'react';
 import { StyleSheet, FlatList, View, Text } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -26,20 +27,27 @@ export default function Home({ username }) {
         ;
 
     return (
-        <View style={styles.container}>
-            <Text style={styles.header} accessibilityRole="header"> Hello {username}</Text>
-            <FlatList
-                data={[...recipes].reverse()}
-                renderItem={({ item }) => <RecipeCard recipe={item} onPress={() => navigation.navigate("Recipe", { recipe: item })} />}
-                keyExtractor={(item) => item.id}
-                contentContainerStyle={styles.flatListContainer}
+        <SafeAreaView style={styles.SafeAreaView}>
+            <View style={styles.container}>
+                <Text style={styles.header} accessibilityRole="header"> Hello {username}</Text>
+                <FlatList
+                    data={[...recipes].reverse()}
+                    renderItem={({ item }) => <RecipeCard recipe={item} onPress={() => navigation.navigate("Recipe", { recipe: item })} />}
+                    keyExtractor={(item) => item.id}
+                    contentContainerStyle={styles.flatListContainer}
 
-            />
-        </View>
+                />
+            </View>
+        </SafeAreaView>
     )
 }
 
 const styles = StyleSheet.create({
+    SafeAreaView: {
+        flex: 1,
+        backgroundColor: colors.background,
+    },
+
     container: {
         flex: 1,
         gap: 10,
