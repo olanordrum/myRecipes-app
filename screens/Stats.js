@@ -31,7 +31,7 @@ export default function Stats() {
         <SafeAreaView style={styles.SafeAreaView}>
             <View style={styles.container}>
                 <Text style={styles.header} accessibilityRole="header"> Statistics</Text>
-                <StatsCard stat={totalRecipes} />
+                <StatsCard header={"Number of recipes"} data={totalRecipes} />
             </View>
         </SafeAreaView>
     )

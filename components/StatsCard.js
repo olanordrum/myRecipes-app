@@ -1,17 +1,17 @@
 import { View, Text, StyleSheet, Pressable } from "react-native"
 import { colors } from "../theme/colors"
 
-const StatsCard = ({ stat }) => {
+const StatsCard = ({ header, data }) => {
     return (
         <View style={styles.card}>
             <View style={styles.titleRow}>
             </View>
             <Text accessibilityRole="header">
-                Number of recipes
+                {header}
             </Text>
             <View style={styles.divider} />
             <Text accessibilityRole="data">
-                {stat}
+                {data}
             </Text>
 
         </View>
