@@ -1,14 +1,36 @@
 import { SafeAreaView } from 'react-native-safe-area-context';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useFocusEffect } from "@react-navigation/native";
+
+import { useState, useCallback } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { colors } from "../theme/colors"
 
 
 export default function Stats() {
+    const [recipes, setRecipes] = useState([]);
+    const totalRecipes = recipes.length;
+
+    useFocusEffect(
+        useCallback(() => {
+            const getRecipes = async () => {
+                try {
+                    const existingRecipes = await AsyncStorage.getItem('recipes');
+                    const parsed = existingRecipes ? JSON.parse(existingRecipes) : [];
+                    setRecipes(parsed);
+                } catch (error) {
+                    console.log("Error getting recipes:", error);
+                }
+            };
+            getRecipes();
+        }, []))
+        ;
+
     return (
         <SafeAreaView style={styles.SafeAreaView}>
             <View style={styles.container}>
                 <Text>
-                    "STATS"
+                    {totalRecipes}
                 </Text>
             </View>
         </SafeAreaView>
