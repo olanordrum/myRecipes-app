@@ -30,6 +30,7 @@ export default function Home({ username }) {
         <SafeAreaView style={styles.SafeAreaView}>
             <View style={styles.container}>
                 <Text style={styles.header} accessibilityRole="header"> Hello {username}</Text>
+                <View style={styles.headerDivider} />
                 <FlatList
                     data={[...recipes].reverse()}
                     renderItem={({ item }) => <RecipeCard recipe={item} onPress={() => navigation.navigate("Recipe", { recipe: item })} />}
@@ -63,6 +64,6 @@ const styles = StyleSheet.create({
     flatListContainer: {
         gap: 10,
         backgroundColor: colors.background,
-        paddingBottom: 150
+        paddingBottom: 150,
     },
 })

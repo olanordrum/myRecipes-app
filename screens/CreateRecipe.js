@@ -51,90 +51,93 @@ export default function CreateRecipe() {
 
     return (
         <SafeAreaView style={styles.SafeAreaView}>
-            <ScrollView style={styles.scrollContainer} contentContainerStyle={styles.container} accessibilityRole="header" accessibilityLabel='Create a recipe' >
+            <View style={styles.container}>
                 <Text style={styles.h1} accessibilityRole="header">Create recipe</Text>
-                <Text style={styles.h2}>Recipe name</Text>
-                <TextInput
-                    placeholder="Recipe name"
-                    value={recipeName}
-                    onChangeText={setRecipeName}
-                    autoCapitalize='sentences'
-                    style={styles.input}
-                    returnKeyType="done"
-                    onSubmitEditing={Keyboard.dismiss}
-                    accessibilityRole="text"
-                    accessibilityLabel="Recipe name, required"
-                    accessibilityHint="Sets recipe name"
-                />
+                <View style={styles.divider} />
+                <ScrollView style={styles.scrollContainer} contentContainerStyle={styles.contentContainer} accessibilityRole="header" accessibilityLabel='Create a recipe' >
+                    <Text style={styles.h2}>Recipe name</Text>
+                    <TextInput
+                        placeholder="Recipe name"
+                        value={recipeName}
+                        onChangeText={setRecipeName}
+                        autoCapitalize='sentences'
+                        style={styles.input}
+                        returnKeyType="done"
+                        onSubmitEditing={Keyboard.dismiss}
+                        accessibilityRole="text"
+                        accessibilityLabel="Recipe name, required"
+                        accessibilityHint="Sets recipe name"
+                    />
 
-                <Text style={styles.h2}>Description</Text>
-                <TextInput
-                    placeholder='Short recipe description'
-                    value={recipeDescription}
-                    onChangeText={setRecipeDescription}
-                    autoCapitalize='sentences'
-                    style={[styles.input, styles.multilineTextShort]}
-                    multiline
-                    returnKeyType="done"
-                    onSubmitEditing={Keyboard.dismiss}
-                    submitBehavior={'blurAndSubmit'}
-                    accessibilityRole="text"
-                    accessibilityLabel="Short recipe description"
-                    accessibilityHint="Sets recipe description "
-                />
-                <Text style={styles.h2}>Ingredients</Text>
-                <IngredientInput onAdd={(ingredient) => {
-                    setIngredients(prev => [...prev, ingredient]);
-                }} />
+                    <Text style={styles.h2}>Description</Text>
+                    <TextInput
+                        placeholder='Short recipe description'
+                        value={recipeDescription}
+                        onChangeText={setRecipeDescription}
+                        autoCapitalize='sentences'
+                        style={[styles.input, styles.multilineTextShort]}
+                        multiline
+                        returnKeyType="done"
+                        onSubmitEditing={Keyboard.dismiss}
+                        submitBehavior={'blurAndSubmit'}
+                        accessibilityRole="text"
+                        accessibilityLabel="Short recipe description"
+                        accessibilityHint="Sets recipe description "
+                    />
+                    <Text style={styles.h2}>Ingredients</Text>
+                    <IngredientInput onAdd={(ingredient) => {
+                        setIngredients(prev => [...prev, ingredient]);
+                    }} />
 
-                <View style={styles.ingredientContainer}>
-                    {ingredients && ingredients.map((item, index) => (
-                        <View key={index} style={styles.ingredientRow}>
-                            <View style={styles.name}><Text>{item.name}</Text></View>
-                            <View style={styles.measure}><Text>{item.measure}</Text></View>
-                            <Pressable
-                                style={styles.deleteButton}
-                                onPress={
-                                    () => setIngredients(ingredientsList => ingredientsList.filter((_, i) => i !== index))
-                                }
-                                accessibilityRole="button"
-                                accessibilityHint="Deletes ingredient from ingredient list"
-                            >
-                                <Ionicons name="close" size={20} color={"red"} />
-                            </Pressable>
-                        </View>
-                    ))
-                    }
-                </View>
+                    <View style={styles.ingredientContainer}>
+                        {ingredients && ingredients.map((item, index) => (
+                            <View key={index} style={styles.ingredientRow}>
+                                <View style={styles.name}><Text>{item.name}</Text></View>
+                                <View style={styles.measure}><Text>{item.measure}</Text></View>
+                                <Pressable
+                                    style={styles.deleteButton}
+                                    onPress={
+                                        () => setIngredients(ingredientsList => ingredientsList.filter((_, i) => i !== index))
+                                    }
+                                    accessibilityRole="button"
+                                    accessibilityHint="Deletes ingredient from ingredient list"
+                                >
+                                    <Ionicons name="close" size={20} color={"red"} />
+                                </Pressable>
+                            </View>
+                        ))
+                        }
+                    </View>
 
-                <Text style={styles.h2}>Instructions</Text>
-                <TextInput
-                    placeholder='Recipe instructions'
-                    value={recipeInstructions}
-                    onChangeText={setRecipeInstructions}
-                    autoCapitalize='sentences'
-                    style={[styles.input, styles.multilineText]}
-                    multiline
-                    returnKeyType="done"
-                    onSubmitEditing={Keyboard.dismiss}
-                    submitBehavior={'blurAndSubmit'}
-                    accessibilityRole="text"
-                    accessibilityLabel="Recipe instructions"
-                    accessibilityHint="Sets instructions for recipe "
-                />
-                <Pressable
-                    style={isValid ? styles.pressable : [styles.pressable, styles.disabled]}
-                    disabled={!isValid}
-                    onPress={() => saveRecipe()}
-                    accessibilityRole="button"
-                    accessibilityHint="Saves recipe"
-                >
-                    <Text style={styles.pressableText}>
-                        Save recipe
-                    </Text>
-                </Pressable>
+                    <Text style={styles.h2}>Instructions</Text>
+                    <TextInput
+                        placeholder='Recipe instructions'
+                        value={recipeInstructions}
+                        onChangeText={setRecipeInstructions}
+                        autoCapitalize='sentences'
+                        style={[styles.input, styles.multilineText]}
+                        multiline
+                        returnKeyType="done"
+                        onSubmitEditing={Keyboard.dismiss}
+                        submitBehavior={'blurAndSubmit'}
+                        accessibilityRole="text"
+                        accessibilityLabel="Recipe instructions"
+                        accessibilityHint="Sets instructions for recipe "
+                    />
+                    <Pressable
+                        style={isValid ? styles.pressable : [styles.pressable, styles.disabled]}
+                        disabled={!isValid}
+                        onPress={() => saveRecipe()}
+                        accessibilityRole="button"
+                        accessibilityHint="Saves recipe"
+                    >
+                        <Text style={styles.pressableText}>
+                            Save recipe
+                        </Text>
+                    </Pressable>
+                </ScrollView >
+            </View>
 
-            </ScrollView >
         </SafeAreaView>
     )
 }
@@ -144,22 +147,30 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: colors.background
     },
+    container: {
+        paddingHorizontal: 20
+    },
 
     scrollContainer: {
         backgroundColor: colors.background,
     },
 
-    container: {
-        padding: 20,
+    contentContainer: {
+        paddingTop: 10,
         gap: 10,
         backgroundColor: colors.background,
         paddingBottom: 100
     },
 
     h1: {
-        fontSize: 30,
-        fontWeight: 500,
+        fontSize: 25,
         color: colors.text,
+        marginBottom: 10
+    },
+
+    divider: {
+        borderWidth: 0.5,
+        borderColor: colors.border
     },
 
     h2: {

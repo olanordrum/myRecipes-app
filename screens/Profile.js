@@ -23,28 +23,33 @@ export default function Profile({ username, setUsername }) {
                     accessibilityRole="header">
                     Profile
                 </Text>
-                <View style={styles.profileSection}>
-                    <View style={styles.avatar}>
-                        <Ionicons name="person" size={50} />
+
+                <View style={styles.divider} />
+                <View style={styles.content}>
+                    <View style={styles.profileSection}>
+                        <View style={styles.avatar}>
+                            <Ionicons name="person" size={50} />
+                        </View>
+                        <Text style={styles.username}>{username}</Text>
                     </View>
-                </View>
 
-                <Text style={styles.label} accessibilityRole="header">Your name</Text>
+                    <Text style={styles.label} accessibilityRole="header">Your name</Text>
 
-                <View style={styles.inputContainer}>
-                    <TextInput
-                        placeholder="Recipe name"
-                        value={username}
-                        onChangeText={setUsername}
-                        autoCapitalize='sentences'
-                        style={styles.input}
-                        returnKeyType="done"
-                        onSubmitEditing={Keyboard.dismiss}
-                        onBlur={() => saveUsername(username)}
-                        accessibilityRole="text"
-                        accessibilityLabel="Your name"
-                        accessibilityHint="Set your name"
-                    />
+                    <View style={styles.inputContainer}>
+                        <TextInput
+                            placeholder="Recipe name"
+                            value={username}
+                            onChangeText={setUsername}
+                            autoCapitalize='sentences'
+                            style={styles.input}
+                            returnKeyType="done"
+                            onSubmitEditing={Keyboard.dismiss}
+                            onBlur={() => saveUsername(username)}
+                            accessibilityRole="text"
+                            accessibilityLabel="Your name"
+                            accessibilityHint="Set your name"
+                        />
+                    </View>
                 </View>
             </View >
         </SafeAreaView>
@@ -59,15 +64,24 @@ const styles = StyleSheet.create({
 
     container: {
         flex: 1,
+        paddingTop: 0,
         padding: 20,
+        gap: 10,
         backgroundColor: colors.background
     },
 
     header: {
-        fontSize: 28,
-        fontWeight: '700',
+        fontSize: 25,
         color: colors.text,
-        marginBottom: 30,
+    },
+
+    divider: {
+        borderWidth: 0.5,
+        borderColor: colors.border
+    },
+
+    content: {
+        marginTop: 20
     },
 
     profileSection: {
@@ -83,6 +97,10 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         marginBottom: 10,
+    },
+
+    username: {
+        fontSize: 23
     },
 
     label: {
